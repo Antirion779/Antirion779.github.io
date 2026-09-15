@@ -224,6 +224,13 @@
   .project-body{padding:22px 20px 20px;}
   .project-body h3{font-size:1.2rem; margin-bottom:10px; font-weight:700;}
   .project-body p{color:var(--text-muted); max-width:66ch;}
+  .project-body p a, .about-text a{
+    color:var(--accent-ink);
+    text-decoration:underline;
+    text-decoration-color:var(--border-strong);
+    text-underline-offset:2px;
+  }
+  .project-body p a:hover, .about-text a:hover{color:var(--accent); text-decoration-color:var(--accent);}
   .badge{
     font-family:"IBM Plex Mono",monospace;
     font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
@@ -251,6 +258,36 @@
     padding-bottom:1px;
   }
   .links-row a:hover{color:var(--accent);}
+
+  /* ---------- media (screenshots / video) ---------- */
+  .media-row{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:16px;
+  }
+  .media-row img{
+    width:auto; max-width:220px; max-height:160px;
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    display:block;
+  }
+  .video-embed{
+    position:relative; width:100%; max-width:480px;
+    aspect-ratio:16/9;
+    margin-top:16px;
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    overflow:hidden;
+    background:var(--surface-2);
+  }
+  .video-embed iframe{
+    position:absolute; inset:0; width:100%; height:100%; border:0;
+  }
+  .jam-media{
+    width:100%;
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    display:block;
+  }
 
   /* ---------- jams grid ---------- */
   .jam-grid{
@@ -361,10 +398,9 @@
     .contact-box{padding:24px 18px;}
   }
 </style>
+
 </head>
 <body>
-
-
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top">antoine<span class="dot">.</span>dirion</a>
@@ -405,6 +441,26 @@
 
     <article class="project">
       <div class="project-head">
+        <span><strong>AR/VR Developer</strong> &middot; Wilkins Avenue AR</span>
+        <span>Mar 2023 &ndash; Aug 2024</span>
+      </div>
+      <div class="project-body">
+        <span class="badge">Professional experience &middot; Paris (La Défense), France</span>
+        <h3>End-to-end AR/VR development at a boutique studio &mdash; from R&amp;D to shipped headset builds</h3>
+        <p>A year and a half on a lean team (2 developers when I joined, 3 by the end) building premium AR/VR/XR experiences for retail and entertainment clients. My scope went well beyond writing code: R&amp;D and tech watch on emerging XR hardware, day-to-day Unity/C# development, data, and direct client-facing meetings &mdash; adapting the pitch for non-technical stakeholders.</p>
+        <p style="margin-top:12px;"><strong>Flagship project &mdash; <a href="https://www.wilkins-avenue.com/out-there" target="_blank" rel="noopener">"Out There"</a>:</strong> I took the studio's original build and ported it to Meta Quest 3 and Apple Vision Pro, adding headset-specific interactions to bring the experience up to date on the new hardware &mdash; largely solo on the technical side (portal transitions, line/trail animation systems, and more) under my lead tech's supervision. "Out There" shipped as an immersive musical starring Grammy/Emmy-nominated artist Vanessa Williams, produced with Pollen Music Group, and was shown at AWE USA 2024, VivaTech, and Comic Con Paris &mdash; reaching #1 in its category with 10,000+ downloads and a 4.9★ rating.</p>
+        <p style="margin-top:12px;"><strong>L'Oréal &middot; <a href="https://www.wilkins-avenue.com/shu-uemura-sticker" target="_blank" rel="noopener">Shu Uemura</a>:</strong> built the sticker-recognition system that triggers the brand's Snapchat-based AR experience &mdash; billed as the first AR experience unlocked by a physical product, launched at VivaTech 2023.</p>
+        <p style="margin-top:12px;">Beyond the code, I regularly demoed prototypes to 150+ industry professionals &mdash; including L'Oréal and Cartier &mdash; and represented the studio at VivaTech in front of 180,000+ attendees.</p>
+        <div class="tags">
+          <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">AR / VR / XR</span><span class="tag">Meta XR SDK</span>
+          <span class="tag">PolySpatial</span><span class="tag">Apple Vision Pro</span><span class="tag">Meta Quest 3</span>
+          <span class="tag">Snap AR (Lens Studio)</span><span class="tag">Shaders &amp; raycasting</span><span class="tag">Client demos</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
         <span><strong>Gameplay Programmer (Systems)</strong> &middot; Ubisoft Québec</span>
         <span>Sep 2025 &ndash; Feb 2026</span>
       </div>
@@ -423,29 +479,16 @@
 
     <article class="project">
       <div class="project-head">
-        <span><strong>AR/VR Developer</strong> &middot; Wilkins Avenue AR</span>
-        <span>Mar 2023 &ndash; Aug 2024</span>
-      </div>
-      <div class="project-body">
-        <span class="badge">Professional experience &middot; Paris (La Défense), France</span>
-        <h3>AR/VR R&amp;D and client delivery &mdash; shipped "Out There"</h3>
-        <p>Close to two years doing R&amp;D, prototyping, and production on AR/VR experiences in Unity and C#, across Meta Quest 3, mobile, and PC. Work involved shaders, raycasting, spatial calculations, and 3D interaction design. I integrated the Meta XR SDK and kept projects current as new platforms landed &mdash; including picking up PolySpatial and the wider Apple ecosystem for Apple Vision Pro at launch.</p>
-        <p style="margin-top:12px;">My flagship shipped product was <strong>Out There</strong>, an AR experience that reached #1 in its category with 10,000+ downloads. Beyond the code, I regularly demoed prototypes to 150+ industry professionals &mdash; including L'Oréal and Cartier &mdash; adapting the pitch for non-technical audiences, and represented the studio at VivaTech in front of 180,000+ attendees.</p>
-        <div class="tags">
-          <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">AR / VR</span><span class="tag">Meta XR SDK</span>
-          <span class="tag">PolySpatial</span><span class="tag">Shaders &amp; raycasting</span><span class="tag">Client demos</span>
-        </div>
-      </div>
-    </article>
-
-    <article class="project">
-      <div class="project-head">
         <span><strong>Gameplay &amp; Multiplayer Programmer</strong> &middot; Personal project</span>
         <span>Jan 2022 &ndash; Jan 2023</span>
       </div>
       <div class="project-body">
         <h3>FPS Multiplayer &mdash; Mirror &amp; AWS</h3>
         <p>A first-person shooter built solo, focused on movement feel: core traversal and shooting, then wall-running and jump pads layered on top. I built the lobby flow and multiplayer synchronization with Mirror, hosted on AWS, and used it to run community sessions with 100+ players and a 40+ player tournament.</p>
+        <div class="media-row">
+          <img src="https://img.itch.zone/aW1hZ2UvMTUzNDE2Ny84OTY5ODc0LnBuZw==/347x500/dplDu2.png" alt="FPS Multiplayer — arène de tir avec minuteur en HUD" loading="lazy">
+          <img src="https://img.itch.zone/aW1hZ2UvMTUzNDE2Ny84OTY5ODc1LnBuZw==/347x500/aA4uFd.png" alt="FPS Multiplayer — vue minimap du niveau" loading="lazy">
+        </div>
         <div class="tags">
           <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Mirror (networking)</span>
           <span class="tag">AWS</span><span class="tag">Game feel</span>
@@ -464,6 +507,9 @@
       <div class="project-body">
         <h3>Space Penguin Arena</h3>
         <p>A local couch co-op arena brawler about penguins fighting over the galaxy's biggest tournament. I implemented movement and attack mechanics, built a "Point Area" system to drive match dynamics and competitiveness, and integrated VFX and animation to sell the impact. Presented to stakeholders five times over the course of the project.</p>
+        <div class="video-embed">
+          <iframe src="https://www.youtube-nocookie.com/embed/FbPMM3wMiao" title="Space Penguin Arena — trailer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         <div class="tags">
           <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Local co-op</span><span class="tag">Game feel</span>
         </div>
@@ -483,9 +529,11 @@
     </div>
     <div class="jam-grid">
       <div class="jam-card">
-        <span class="jam-tag">Global Game Jam</span>
-        <h4>Mobile game</h4>
-        <p>Built and shipped a playable mobile game in 48&ndash;72 hours with a team. 500+ downloads and a "Jury's Favorite" award at a competition in France, inside a jam of 35,000+ participants across 97 countries.</p>
+        <span class="jam-tag">Global Game Jam &middot; 2022</span>
+        <h4>Mobile game <span style="color:var(--text-faint); font-weight:400;">&mdash; "Beat Polarity"</span></h4>
+        <p>An endless runner built and shipped in 48&ndash;72 hours with a team: swipe to dodge oncoming color-coded obstacles. 500+ downloads and a "Coup de cœur" jury award at a French video game festival, inside a jam of 35,000+ participants across 97 countries.</p>
+        <img class="jam-media" src="https://img.itch.zone/aW1hZ2UvMTM3Njg5Ny84MDIzNTMzLnBuZw==/347x500/Nt4yki.png" alt="Beat Polarity — endless runner néon, obstacles orange et vert" loading="lazy">
+        <a class="jam-link" href="https://play.google.com/store/apps/details?id=com.GGJamIIMA2.BeatPolarity" target="_blank" rel="noopener">Play on Google Play &rarr;</a>
       </div>
       <div class="jam-card">
         <span class="jam-tag">Ludum Dare</span>
@@ -496,13 +544,11 @@
         <span class="jam-tag">itch.io &middot; Puzzle</span>
         <h4>Eternal Echoes</h4>
         <p>Puzzle prototype, self-published.</p>
+        <img class="jam-media" src="https://img.itch.zone/aW1nLzE2ODgxNTEwLnBuZw==/347x500/kSBWmH.png" alt="Eternal Echoes — art de couverture surréaliste inspiré de Dalí" loading="lazy">
+        <div class="video-embed">
+          <iframe src="https://www.youtube-nocookie.com/embed/qt5-IkLKTKE" title="Eternal Echoes — walkthrough" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         <a class="jam-link" href="https://antirion.itch.io/eternal-echoes" target="_blank" rel="noopener">View on itch.io &rarr;</a>
-      </div>
-      <div class="jam-card">
-        <span class="jam-tag">itch.io &middot; Platformer</span>
-        <h4>Yokai Pachinko, Spirits Hunter</h4>
-        <p>A samurai platformer prototype about a warrior seeking to master the yokai by controlling them.</p>
-        <a class="jam-link" href="https://antirion.itch.io/yokai-pachinko-spirits-hunter" target="_blank" rel="noopener">View on itch.io &rarr;</a>
       </div>
     </div>
   </div>
@@ -615,6 +661,5 @@
   </div>
 </footer>
 <p class="fineprint">&copy; 2026 Antoine Dirion</p>
-
 </body>
 </html>

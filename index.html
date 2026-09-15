@@ -21,6 +21,9 @@
     --accent:#1c7a51;
     --accent-ink:#0e4a30;
     --accent-soft:#dceee2;
+    --btn-bg:#ffffff;
+    --btn-border:#8fa39a;
+    --btn-text:#10161a;
     --shadow: 0 1px 0 rgba(16,22,26,0.04);
     --radius: 3px;
   }
@@ -37,6 +40,9 @@
       --accent:#4fd98c;
       --accent-ink:#bff2d4;
       --accent-soft:#16281f;
+      --btn-bg:#1d2925;
+      --btn-border:#5d7c6c;
+      --btn-text:#e8eee9;
       --shadow: 0 1px 0 rgba(0,0,0,0.3);
     }
   }
@@ -52,6 +58,9 @@
     --accent:#4fd98c;
     --accent-ink:#bff2d4;
     --accent-soft:#16281f;
+    --btn-bg:#1d2925;
+    --btn-border:#5d7c6c;
+    --btn-text:#e8eee9;
     --shadow: 0 1px 0 rgba(0,0,0,0.3);
   }
 
@@ -110,6 +119,11 @@
   .hero{
     position:relative;
     padding:64px 0 52px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
     background-image:
       linear-gradient(var(--border) 1px, transparent 1px),
       linear-gradient(90deg, var(--border) 1px, transparent 1px);
@@ -117,8 +131,9 @@
     background-position: center top;
     -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+    pointer-events:none;
   }
-  .hero-content{position:relative;}
+  .hero-content{position:relative; z-index:1;}
   .eyebrow{
     font-family:"IBM Plex Mono",monospace;
     font-size:12px; letter-spacing:.12em; text-transform:uppercase;
@@ -162,15 +177,17 @@
   .btn{
     font-family:"IBM Plex Mono",monospace;
     font-size:13px;
+    font-weight:600;
     text-decoration:none;
     padding:11px 16px;
     border-radius:var(--radius);
-    border:1px solid var(--border-strong);
-    color:var(--text);
+    border:1.5px solid var(--btn-border);
+    background:var(--btn-bg);
+    color:var(--btn-text);
     display:inline-flex; align-items:center; gap:8px;
-    transition:border-color .15s ease, background .15s ease, color .15s ease;
+    transition:border-color .15s ease, background .15s ease, color .15s ease, transform .15s ease;
   }
-  .btn:hover{border-color:var(--accent); color:var(--accent-ink); background:var(--accent-soft);}
+  .btn:hover{border-color:var(--accent); color:var(--surface); background:var(--accent); transform:translateY(-1px);}
   .btn.primary{
     background:var(--accent); border-color:var(--accent); color:var(--surface);
     font-weight:600;

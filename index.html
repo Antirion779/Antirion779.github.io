@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Antoine Dirion</title>
-<meta name="description" content="Gameplay programmer portfolio — C++/C# systems, tools, and shipped projects from Ubisoft Québec to game jams.">
+<meta id="metaDesc" name="description" content="Gameplay programmer portfolio — C++/C# systems, tools, and shipped projects from Ubisoft Québec to game jams.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -105,7 +105,8 @@
     white-space:nowrap;
   }
   .brand .dot{color:var(--accent);}
-  nav.topnav{display:flex; gap:18px; overflow-x:auto; -ms-overflow-style:none; scrollbar-width:none;}
+  .topbar-right{display:flex; align-items:center; gap:14px; min-width:0;}
+  nav.topnav{display:flex; gap:18px; overflow-x:auto; -ms-overflow-style:none; scrollbar-width:none; min-width:0;}
   nav.topnav::-webkit-scrollbar{display:none;}
   nav.topnav a{
     font-family:"IBM Plex Mono",monospace;
@@ -114,6 +115,23 @@
     padding:4px 2px; border-bottom:1px solid transparent;
   }
   nav.topnav a:hover{color:var(--accent); border-color:var(--accent);}
+  .lang-switch{
+    display:flex; align-items:center; gap:6px;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px; letter-spacing:.06em;
+    padding-left:14px;
+    border-left:1px solid var(--border);
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .lang-btn{
+    background:none; border:none; cursor:pointer;
+    font:inherit; letter-spacing:inherit;
+    color:var(--text-faint); padding:2px 1px;
+  }
+  .lang-btn:hover{color:var(--text-muted);}
+  .lang-btn.active{color:var(--accent); font-weight:600;}
+  .lang-sep{color:var(--border-strong);}
 
   /* ---------- hero ---------- */
   .hero{
@@ -404,26 +422,33 @@
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top">antoine<span class="dot">.</span>dirion</a>
-    <nav class="topnav">
-      <a href="#work">Work</a>
-      <a href="#jams">Jams</a>
-      <a href="#skills">Skills</a>
-      <a href="#path">Path</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="topbar-right">
+      <nav class="topnav">
+        <a href="#work" data-i18n="nav-work">Work</a>
+        <a href="#jams" data-i18n="nav-jams">Jams</a>
+        <a href="#skills" data-i18n="nav-skills">Skills</a>
+        <a href="#path" data-i18n="nav-path">Path</a>
+        <a href="#contact" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
   </div>
 </header>
 
 <div id="top"></div>
 <section class="hero">
   <div class="wrap hero-content">
-    <div class="eyebrow">gameplay programmer</div>
+    <div class="eyebrow" data-i18n="hero-eyebrow">gameplay programmer</div>
     <h1>Antoine Dirion</h1>
-    <div class="role">C++ / C# &middot; Unity &amp; Unreal &middot; Systems, Mechanics &amp; Developer Tools</div>
-    <p class="pitch">I turn design intentions into responsive mechanics, reusable systems, and the debug tools that let teams inspect and iterate on them. Production experience at Ubisoft Québec, plus two years shipping AR/VR before that.</p>
-    <div class="statusline"><span class="caret">&gt;</span> status: available_now &middot; based: québec city, canada &middot; open_to: canada + europe</div>
+    <div class="role" data-i18n="hero-role">C++ / C# &middot; Unity &amp; Unreal &middot; Systems, Mechanics &amp; Developer Tools</div>
+    <p class="pitch" data-i18n="hero-pitch">I turn design intentions into responsive mechanics, reusable systems, and the debug tools that let teams inspect and iterate on them. Production experience at Ubisoft Québec, plus two years shipping AR/VR before that.</p>
+    <div class="statusline"><span class="caret">&gt;</span> <span data-i18n="hero-status">status: available_now &middot; based: québec city, canada &middot; open_to: canada + europe</span></div>
     <div class="cta-row">
-      <a class="btn primary" href="CV_AntoineDIRION_GameplayProg_2026_EN.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
+      <a class="btn primary" id="cvBtn" href="CV_AntoineDIRION_GameplayProg_2026_EN.pdf" target="_blank" rel="noopener"><span data-i18n="cv-btn-label">Download résumé (PDF)</span></a>
       <a class="btn" href="https://antirion.itch.io/" target="_blank" rel="noopener">itch.io</a>
       <a class="btn" href="https://github.com/Antirion779" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/antoinedirion/" target="_blank" rel="noopener">LinkedIn</a>
@@ -435,22 +460,22 @@
 <section id="work">
   <div class="wrap">
     <div class="section-head">
-      <h2>Selected work</h2>
-      <p class="section-intro">Production systems and personal projects, in order of what best shows how I work.</p>
+      <h2 data-i18n="work-h2">Selected work</h2>
+      <p class="section-intro" data-i18n="work-intro">Production systems and personal projects, in order of what best shows how I work.</p>
     </div>
 
     <article class="project">
       <div class="project-head">
-        <span><strong>AR/VR Developer</strong> &middot; Wilkins Avenue AR</span>
-        <span>Mar 2023 &ndash; Aug 2024</span>
+        <span><strong data-i18n="proj1-role">AR/VR Developer</strong> &middot; Wilkins Avenue AR</span>
+        <span data-i18n="proj1-dates">Mar 2023 &ndash; Aug 2024</span>
       </div>
       <div class="project-body">
-        <span class="badge">Professional experience &middot; Paris (La Défense), France</span>
-        <h3>End-to-end AR/VR development at a boutique studio &mdash; from R&amp;D to shipped headset builds</h3>
-        <p>A year and a half on a lean team (2 developers when I joined, 3 by the end) building premium AR/VR/XR experiences for retail and entertainment clients. My scope went well beyond writing code: R&amp;D and tech watch on emerging XR hardware, day-to-day Unity/C# development, data, and direct client-facing meetings &mdash; adapting the pitch for non-technical stakeholders.</p>
-        <p style="margin-top:12px;"><strong>Flagship project &mdash; <a href="https://www.wilkins-avenue.com/out-there" target="_blank" rel="noopener">"Out There"</a>:</strong> I took the studio's original build and ported it to Meta Quest 3 and Apple Vision Pro, adding headset-specific interactions to bring the experience up to date on the new hardware &mdash; largely solo on the technical side (portal transitions, line/trail animation systems, and more) under my lead tech's supervision. "Out There" shipped as an immersive musical starring Grammy/Emmy-nominated artist Vanessa Williams, produced with Pollen Music Group, and was shown at AWE USA 2024, VivaTech, and Comic Con Paris &mdash; reaching #1 in its category with 10,000+ downloads and a 4.9★ rating.</p>
-        <p style="margin-top:12px;"><strong>L'Oréal &middot; <a href="https://www.wilkins-avenue.com/shu-uemura-sticker" target="_blank" rel="noopener">Shu Uemura</a>:</strong> built the sticker-recognition system that triggers the brand's Snapchat-based AR experience &mdash; billed as the first AR experience unlocked by a physical product, launched at VivaTech 2023.</p>
-        <p style="margin-top:12px;">Beyond the code, I regularly demoed prototypes to 150+ industry professionals &mdash; including L'Oréal and Cartier &mdash; and represented the studio at VivaTech in front of 180,000+ attendees.</p>
+        <span class="badge" data-i18n="proj1-badge">Professional experience &middot; Paris (La Défense), France</span>
+        <h3 data-i18n="proj1-h3">End-to-end AR/VR development at a boutique studio &mdash; from R&amp;D to shipped headset builds</h3>
+        <p data-i18n="proj1-p1">A year and a half on a lean team (2 developers when I joined, 3 by the end) building premium AR/VR/XR experiences for retail and entertainment clients. My scope went well beyond writing code: R&amp;D and tech watch on emerging XR hardware, day-to-day Unity/C# development, data, and direct client-facing meetings &mdash; adapting the pitch for non-technical stakeholders.</p>
+        <p style="margin-top:12px;" data-i18n="proj1-p2"><strong>Flagship project &mdash; <a href="https://www.wilkins-avenue.com/out-there" target="_blank" rel="noopener">"Out There"</a>:</strong> I took the studio's original build and ported it to Meta Quest 3 and Apple Vision Pro, adding headset-specific interactions to bring the experience up to date on the new hardware &mdash; largely solo on the technical side (portal transitions, line/trail animation systems, and more) under my lead tech's supervision. "Out There" shipped as an immersive musical starring Grammy/Emmy-nominated artist Vanessa Williams, produced with Pollen Music Group, and was shown at AWE USA 2024, VivaTech, and Comic Con Paris &mdash; reaching #1 in its category with 10,000+ downloads and a 4.9★ rating.</p>
+        <p style="margin-top:12px;" data-i18n="proj1-p3"><strong>L'Oréal &middot; <a href="https://www.wilkins-avenue.com/shu-uemura-sticker" target="_blank" rel="noopener">Shu Uemura</a>:</strong> built the sticker-recognition system that triggers the brand's Snapchat-based AR experience &mdash; billed as the first AR experience unlocked by a physical product, launched at VivaTech 2023.</p>
+        <p style="margin-top:12px;" data-i18n="proj1-p4">Beyond the code, I regularly demoed prototypes to 150+ industry professionals &mdash; including L'Oréal and Cartier &mdash; and represented the studio at VivaTech in front of 180,000+ attendees.</p>
         <div class="tags">
           <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">AR / VR / XR</span><span class="tag">Meta XR SDK</span>
           <span class="tag">PolySpatial</span><span class="tag">Apple Vision Pro</span><span class="tag">Meta Quest 3</span>
@@ -461,15 +486,15 @@
 
     <article class="project">
       <div class="project-head">
-        <span><strong>Gameplay Programmer (Systems)</strong> &middot; Ubisoft Québec</span>
-        <span>Sep 2025 &ndash; Feb 2026</span>
+        <span><strong data-i18n="proj2-role">Gameplay Programmer (Systems)</strong> &middot; Ubisoft Québec</span>
+        <span data-i18n="proj2-dates">Sep 2025 &ndash; Feb 2026</span>
       </div>
       <div class="project-body">
-        <span class="badge">Confidential production &middot; abstracted case study, no internal assets shown</span>
-        <h3>Exploration systems &amp; debug tooling on Anvil</h3>
-        <p>Part of a cross-production Gameplay World Systems team, working in C++ on Ubisoft's proprietary Anvil engine &mdash; a large, shared codebase spanning five AAA productions.</p>
-        <p style="margin-top:12px;">I developed and maintained exploration gameplay systems and tools, and built an ImGui debug/visualization panel layered over an existing 2D map so teams could inspect, filter, and debug points of interest and world markers directly &mdash; cutting down investigation time during iteration. I also refactored a shared filtering module into a reusable component with a dedicated class and a cleaner API, removing duplication across tools.</p>
-        <p style="margin-top:12px;">Day to day meant code review through Swarm, coordinating with QA on reproduction and edge cases, and holding the line on coding guidelines and tech debt in a codebase other teams depend on.</p>
+        <span class="badge" data-i18n="proj2-badge">Confidential production &middot; abstracted case study, no internal assets shown</span>
+        <h3 data-i18n="proj2-h3">Exploration systems &amp; debug tooling on Anvil</h3>
+        <p data-i18n="proj2-p1">Part of a cross-production Gameplay World Systems team, working in C++ on Ubisoft's proprietary Anvil engine &mdash; a large, shared codebase spanning five AAA productions.</p>
+        <p style="margin-top:12px;" data-i18n="proj2-p2">I developed and maintained exploration gameplay systems and tools, and built an ImGui debug/visualization panel layered over an existing 2D map so teams could inspect, filter, and debug points of interest and world markers directly &mdash; cutting down investigation time during iteration. I also refactored a shared filtering module into a reusable component with a dedicated class and a cleaner API, removing duplication across tools.</p>
+        <p style="margin-top:12px;" data-i18n="proj2-p3">Day to day meant code review through Swarm, coordinating with QA on reproduction and edge cases, and holding the line on coding guidelines and tech debt in a codebase other teams depend on.</p>
         <div class="tags">
           <span class="tag">C++</span><span class="tag">Anvil (proprietary)</span><span class="tag">ImGui</span>
           <span class="tag">Perforce / Swarm</span><span class="tag">Cross-studio collaboration</span><span class="tag">QA coordination</span>
@@ -479,12 +504,12 @@
 
     <article class="project">
       <div class="project-head">
-        <span><strong>Gameplay &amp; Multiplayer Programmer</strong> &middot; Personal project</span>
-        <span>Jan 2022 &ndash; Jan 2023</span>
+        <span><strong data-i18n="proj3-role">Gameplay &amp; Multiplayer Programmer</strong> &middot; <span data-i18n="proj3-subtitle">Personal project</span></span>
+        <span data-i18n="proj3-dates">Jan 2022 &ndash; Jan 2023</span>
       </div>
       <div class="project-body">
         <h3>FPS Multiplayer &mdash; Mirror &amp; AWS</h3>
-        <p>A first-person shooter built solo, focused on movement feel: core traversal and shooting, then wall-running and jump pads layered on top. I built the lobby flow and multiplayer synchronization with Mirror, hosted on AWS, and used it to run community sessions with 100+ players and a 40+ player tournament.</p>
+        <p data-i18n="proj3-p1">A first-person shooter built solo, focused on movement feel: core traversal and shooting, then wall-running and jump pads layered on top. I built the lobby flow and multiplayer synchronization with Mirror, hosted on AWS, and used it to run community sessions with 100+ players and a 40+ player tournament.</p>
         <div class="media-row">
           <img src="https://img.itch.zone/aW1hZ2UvMTUzNDE2Ny84OTY5ODc0LnBuZw==/347x500/dplDu2.png" alt="FPS Multiplayer — arène de tir avec minuteur en HUD" loading="lazy">
           <img src="https://img.itch.zone/aW1hZ2UvMTUzNDE2Ny84OTY5ODc1LnBuZw==/347x500/aA4uFd.png" alt="FPS Multiplayer — vue minimap du niveau" loading="lazy">
@@ -494,19 +519,19 @@
           <span class="tag">AWS</span><span class="tag">Game feel</span>
         </div>
         <div class="links-row">
-          <a href="https://antirion.itch.io/fps" target="_blank" rel="noopener">Play on itch.io &rarr;</a>
+          <a href="https://antirion.itch.io/fps" target="_blank" rel="noopener" data-i18n="proj3-link">Play on itch.io &rarr;</a>
         </div>
       </div>
     </article>
 
     <article class="project">
       <div class="project-head">
-        <span><strong>Gameplay Programmer</strong> &middot; IIM student project (couch co-op)</span>
-        <span>Sep &ndash; Dec 2023</span>
+        <span><strong data-i18n="proj4-role">Gameplay Programmer</strong> &middot; <span data-i18n="proj4-subtitle">IIM student project (couch co-op)</span></span>
+        <span data-i18n="proj4-dates">Sep &ndash; Dec 2023</span>
       </div>
       <div class="project-body">
         <h3>Space Penguin Arena</h3>
-        <p>A local couch co-op arena brawler about penguins fighting over the galaxy's biggest tournament. I implemented movement and attack mechanics, built a "Point Area" system to drive match dynamics and competitiveness, and integrated VFX and animation to sell the impact. Presented to stakeholders five times over the course of the project.</p>
+        <p data-i18n="proj4-p1">A local couch co-op arena brawler about penguins fighting over the galaxy's biggest tournament. I implemented movement and attack mechanics, built a "Point Area" system to drive match dynamics and competitiveness, and integrated VFX and animation to sell the impact. Presented to stakeholders five times over the course of the project.</p>
         <div class="video-embed">
           <iframe src="https://www.youtube-nocookie.com/embed/FbPMM3wMiao" title="Space Penguin Arena — trailer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -514,7 +539,7 @@
           <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Local co-op</span><span class="tag">Game feel</span>
         </div>
         <div class="links-row">
-          <a href="https://kaizensam.itch.io/space-penguin-arena" target="_blank" rel="noopener">Play on itch.io &rarr;</a>
+          <a href="https://kaizensam.itch.io/space-penguin-arena" target="_blank" rel="noopener" data-i18n="proj4-link">Play on itch.io &rarr;</a>
         </div>
       </div>
     </article>
@@ -524,31 +549,31 @@
 <section id="jams">
   <div class="wrap">
     <div class="section-head">
-      <h2>Prototypes &amp; game jams</h2>
-      <p class="section-intro">10+ jams and rapid prototypes across Unity and Unreal, shipped solo and in teams &mdash; usually against a 48&ndash;72 hour clock.</p>
+      <h2 data-i18n="jams-h2">Prototypes &amp; game jams</h2>
+      <p class="section-intro" data-i18n="jams-intro">10+ jams and rapid prototypes across Unity and Unreal, shipped solo and in teams &mdash; usually against a 48&ndash;72 hour clock.</p>
     </div>
     <div class="jam-grid">
       <div class="jam-card">
         <span class="jam-tag">Global Game Jam &middot; 2022</span>
-        <h4>Mobile game <span style="color:var(--text-faint); font-weight:400;">&mdash; "Beat Polarity"</span></h4>
-        <p>An endless runner built and shipped in 48&ndash;72 hours with a team: swipe to dodge oncoming color-coded obstacles. 500+ downloads and a "Coup de cœur" jury award at a French video game festival, inside a jam of 35,000+ participants across 97 countries.</p>
+        <h4 data-i18n="jam1-h4">Mobile game <span style="color:var(--text-faint); font-weight:400;">&mdash; "Beat Polarity"</span></h4>
+        <p data-i18n="jam1-p">An endless runner built and shipped in 48&ndash;72 hours with a team: swipe to dodge oncoming color-coded obstacles. 500+ downloads and a "Coup de cœur" jury award at a French video game festival, inside a jam of 35,000+ participants across 97 countries.</p>
         <img class="jam-media" src="https://img.itch.zone/aW1hZ2UvMTM3Njg5Ny84MDIzNTMzLnBuZw==/347x500/Nt4yki.png" alt="Beat Polarity — endless runner néon, obstacles orange et vert" loading="lazy">
-        <a class="jam-link" href="https://play.google.com/store/apps/details?id=com.GGJamIIMA2.BeatPolarity" target="_blank" rel="noopener">Play on Google Play &rarr;</a>
+        <a class="jam-link" href="https://play.google.com/store/apps/details?id=com.GGJamIIMA2.BeatPolarity" target="_blank" rel="noopener" data-i18n="jam1-link">Play on Google Play &rarr;</a>
       </div>
       <div class="jam-card">
         <span class="jam-tag">Ludum Dare</span>
-        <h4>Jam entry</h4>
-        <p>A playable prototype designed and built solo in 48&ndash;72 hours, with a self-contained mini-game loop. Ranked 485 of 2,939 entries.</p>
+        <h4 data-i18n="jam2-h4">Jam entry</h4>
+        <p data-i18n="jam2-p">A playable prototype designed and built solo in 48&ndash;72 hours, with a self-contained mini-game loop. Ranked 485 of 2,939 entries.</p>
       </div>
       <div class="jam-card">
         <span class="jam-tag">itch.io &middot; Puzzle</span>
         <h4>Eternal Echoes</h4>
-        <p>Puzzle prototype, self-published.</p>
+        <p data-i18n="jam3-p">Puzzle prototype, self-published.</p>
         <img class="jam-media" src="https://img.itch.zone/aW1nLzE2ODgxNTEwLnBuZw==/347x500/kSBWmH.png" alt="Eternal Echoes — art de couverture surréaliste inspiré de Dalí" loading="lazy">
         <div class="video-embed">
           <iframe src="https://www.youtube-nocookie.com/embed/qt5-IkLKTKE" title="Eternal Echoes — walkthrough" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <a class="jam-link" href="https://antirion.itch.io/eternal-echoes" target="_blank" rel="noopener">View on itch.io &rarr;</a>
+        <a class="jam-link" href="https://antirion.itch.io/eternal-echoes" target="_blank" rel="noopener" data-i18n="jam3-link">View on itch.io &rarr;</a>
       </div>
     </div>
   </div>
@@ -557,49 +582,49 @@
 <section id="skills">
   <div class="wrap">
     <div class="section-head">
-      <h2>Toolkit</h2>
+      <h2 data-i18n="skills-h2">Toolkit</h2>
     </div>
     <div class="skill-grid">
       <div class="skill-group">
-        <h4>Languages</h4>
+        <h4 data-i18n="skills-g1">Languages</h4>
         <div class="chips"><span class="chip">C++</span><span class="chip">C#</span></div>
       </div>
       <div class="skill-group">
-        <h4>Engines</h4>
+        <h4 data-i18n="skills-g2">Engines</h4>
         <div class="chips">
           <span class="chip">Unreal Engine (C++ &amp; Blueprints)</span>
           <span class="chip">Unity (C#)</span>
-          <span class="chip">Anvil (proprietary)</span>
+          <span class="chip" data-i18n="chip-anvil">Anvil (proprietary)</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Gameplay systems</h4>
+        <h4 data-i18n="skills-g3">Gameplay systems</h4>
         <div class="chips">
-          <span class="chip">State machines</span>
+          <span class="chip" data-i18n="chip-statemachines">State machines</span>
           <span class="chip">3C / game feel</span>
           <span class="chip">UI &amp; HUD</span>
-          <span class="chip">Exploration systems</span>
+          <span class="chip" data-i18n="chip-exploration">Exploration systems</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Dev tools</h4>
+        <h4 data-i18n="skills-g4">Dev tools</h4>
         <div class="chips">
           <span class="chip">ImGui</span><span class="chip">Perforce</span>
           <span class="chip">Git &amp; GitHub</span><span class="chip">Swarm</span>
-          <span class="chip">Profiling &amp; debugging</span>
+          <span class="chip" data-i18n="chip-profiling">Profiling &amp; debugging</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Adjacent</h4>
+        <h4 data-i18n="skills-g5">Adjacent</h4>
         <div class="chips">
           <span class="chip">Networking (Mirror, AWS)</span>
           <span class="chip">AR/VR (Meta XR SDK, PolySpatial)</span>
-          <span class="chip">QA collaboration</span>
+          <span class="chip" data-i18n="chip-qa">QA collaboration</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Languages spoken</h4>
-        <div class="chips"><span class="chip">French &mdash; native</span><span class="chip">English &mdash; professional</span></div>
+        <h4 data-i18n="skills-g6">Languages spoken</h4>
+        <div class="chips"><span class="chip" data-i18n="chip-fr-lang">French &mdash; native</span><span class="chip" data-i18n="chip-en-lang">English &mdash; professional</span></div>
       </div>
     </div>
   </div>
@@ -608,34 +633,34 @@
 <section id="path">
   <div class="wrap">
     <div class="section-head">
-      <h2>About &amp; path</h2>
+      <h2 data-i18n="path-h2">About &amp; path</h2>
     </div>
-    <p class="about-text">I'm a gameplay programmer based in Québec City, originally from France, with a soft spot for the systems nobody sees &mdash; the state machines, tools, and debug panels that make the mechanics people <em>do</em> see possible. Most recently I worked in C++ on Ubisoft Québec's shared Anvil codebase; before that I spent close to two years shipping AR/VR experiences in Unity for clients like L'Oréal and Cartier. <strong>French native, professional English</strong>, open to opportunities across Canada and Europe.</p>
+    <p class="about-text" data-i18n="about-text">I'm a gameplay programmer based in Québec City, originally from France, with a soft spot for the systems nobody sees &mdash; the state machines, tools, and debug panels that make the mechanics people <em>do</em> see possible. Most recently I worked in C++ on Ubisoft Québec's shared Anvil codebase; before that I spent close to two years shipping AR/VR experiences in Unity for clients like L'Oréal and Cartier. <strong>French native, professional English</strong>, open to opportunities across Canada and Europe.</p>
 
     <div class="timeline">
       <div class="tl-item">
-        <div class="tl-date">Sep 2025 &ndash; Feb 2026</div>
-        <h4>Gameplay Programmer (Systems)</h4>
+        <div class="tl-date" data-i18n="tl1-date">Sep 2025 &ndash; Feb 2026</div>
+        <h4 data-i18n="tl1-h4">Gameplay Programmer (Systems)</h4>
         <div class="tl-org">Ubisoft Québec &middot; Québec, Canada</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date">Mar 2023 &ndash; Aug 2024</div>
-        <h4>AR/VR Developer</h4>
+        <div class="tl-date" data-i18n="tl2-date">Mar 2023 &ndash; Aug 2024</div>
+        <h4 data-i18n="tl2-h4">AR/VR Developer</h4>
         <div class="tl-org">Wilkins Avenue AR &middot; Paris (La Défense), France</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date">Apr 2021 &ndash; May 2024</div>
-        <h4>President, LéoIndieGames</h4>
-        <div class="tl-org">IIM student association &middot; organized 2 tournaments (60+ participants), 10+ partnerships</div>
+        <div class="tl-date" data-i18n="tl3-date">Apr 2021 &ndash; May 2024</div>
+        <h4 data-i18n="tl3-h4">President, LéoIndieGames</h4>
+        <div class="tl-org" data-i18n="tl3-org">IIM student association &middot; organized 2 tournaments (60+ participants), 10+ partnerships</div>
       </div>
       <div class="tl-item">
         <div class="tl-date">2024 &ndash; 2026</div>
-        <h4>M.Sc. Computer Science &mdash; Game Development</h4>
+        <h4 data-i18n="tl4-h4">M.Sc. Computer Science &mdash; Game Development</h4>
         <div class="tl-org">Université du Québec à Chicoutimi (double-degree)</div>
       </div>
       <div class="tl-item">
         <div class="tl-date">2020 &ndash; 2026</div>
-        <h4>Bachelor &amp; Mastère, Game Programming</h4>
+        <h4 data-i18n="tl5-h4">Bachelor &amp; Mastère, Game Programming</h4>
         <div class="tl-org">IIM Digital School &middot; Nanterre, France</div>
       </div>
     </div>
@@ -645,15 +670,15 @@
 <footer id="contact">
   <div class="wrap">
     <div class="contact-box">
-      <h2>Get in touch</h2>
-      <div class="avail">&gt; status: available_now &middot; open to Canada + Europe</div>
+      <h2 data-i18n="contact-h2">Get in touch</h2>
+      <div class="avail">&gt; <span data-i18n="contact-status">status: available_now &middot; open to Canada + Europe</span></div>
       <div class="contact-links">
         <a class="btn primary" href="mailto:antoine.dirion.pro@gmail.com">antoine.dirion.pro@gmail.com</a>
         <a class="btn" href="https://www.linkedin.com/in/antoinedirion/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://github.com/Antirion779" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="https://antirion.itch.io/" target="_blank" rel="noopener">itch.io</a>
       </div>
-      <div class="resume-note">
+      <div class="resume-note" data-i18n="resume-note">
         Résumés also available &mdash; Gameplay Programmer: <a href="CV_AntoineDIRION_GameplayProg_2026_EN.pdf" target="_blank" rel="noopener">EN</a> / <a href="CV_DIRIONAntoine_GameplayProg_2026_FR.pdf" target="_blank" rel="noopener">FR</a>.
         Software Engineer: <a href="CV_AntoineDIRION_SoftwareEngineer_2026_EN.pdf" target="_blank" rel="noopener">EN</a> / <a href="CV_DIRIONAntoine_SoftwareEngineer_2026_FR.pdf" target="_blank" rel="noopener">FR</a>.
       </div>
@@ -661,5 +686,146 @@
   </div>
 </footer>
 <p class="fineprint">&copy; 2026 Antoine Dirion</p>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'site-lang';
+  var CV = {
+    en: 'CV_AntoineDIRION_GameplayProg_2026_EN.pdf',
+    fr: 'CV_DIRIONAntoine_GameplayProg_2026_FR.pdf'
+  };
+  var META = {
+    en: "Gameplay programmer portfolio — C++/C# systems, tools, and shipped projects from Ubisoft Québec to game jams.",
+    fr: "Portfolio de programmeur gameplay — systèmes et outils en C++/C#, projets livrés d'Ubisoft Québec aux game jams."
+  };
+  var FR = {
+    "nav-work": "Travail",
+    "nav-jams": "Jams",
+    "nav-skills": "Compétences",
+    "nav-path": "Parcours",
+    "nav-contact": "Contact",
+
+    "hero-eyebrow": "programmeur gameplay",
+    "hero-role": "C++ / C# &middot; Unity &amp; Unreal &middot; Systèmes, mécaniques &amp; outils de développement",
+    "hero-pitch": "Je transforme des intentions de design en mécaniques réactives, en systèmes réutilisables, et en outils de debug qui permettent aux équipes de les inspecter et d'itérer dessus. Expérience en production chez Ubisoft Québec, précédée de deux ans en AR/VR.",
+    "hero-status": "statut : disponible_maintenant &middot; basé à : québec, canada &middot; ouvert_à : canada + europe",
+    "cv-btn-label": "Télécharger le CV (PDF)",
+
+    "work-h2": "Travaux sélectionnés",
+    "work-intro": "Systèmes de production et projets personnels, dans l'ordre qui illustre le mieux ma façon de travailler.",
+
+    "proj1-role": "Développeur AR/VR",
+    "proj1-dates": "Mar 2023 &ndash; Aoû 2024",
+    "proj1-badge": "Expérience professionnelle &middot; Paris (La Défense), France",
+    "proj1-h3": "Développement AR/VR de bout en bout dans un studio à taille humaine &mdash; de la R&amp;D aux builds casque livrés",
+    "proj1-p1": "Un an et demi au sein d'une équipe resserrée (2 développeurs à mon arrivée, 3 en fin de contrat), à construire des expériences AR/VR/XR premium pour des clients du retail et du divertissement. Mon périmètre allait bien au-delà du code&nbsp;: veille technologique sur le matériel XR émergent, développement Unity/C# au quotidien, data, et rendez-vous clients en direct &mdash; en adaptant le discours pour des interlocuteurs non-techniques.",
+    "proj1-p2": "<strong>Projet phare &mdash; <a href=\"https://www.wilkins-avenue.com/out-there\" target=\"_blank\" rel=\"noopener\">« Out There »</a>&nbsp;:</strong> j'ai repris la toute première version du studio pour la porter sur Meta Quest 3 et Apple Vision Pro, en ajoutant des interactions spécifiques à chaque casque pour remettre l'expérience au goût du jour sur le nouveau matériel &mdash; en grande partie seul côté technique (transitions de portails, systèmes d'animation de lignes/trails, et plus) sous la supervision de mon lead tech. « Out There » est sorti sous la forme d'une comédie musicale immersive avec l'artiste Vanessa Williams (nommée aux Grammy/Emmy), coproduite avec Pollen Music Group, et montrée à l'AWE USA 2024, VivaTech et Comic Con Paris &mdash; atteignant la 1ère place de sa catégorie avec plus de 10 000 téléchargements et une note de 4,9★.",
+    "proj1-p3": "<strong>L'Oréal &middot; <a href=\"https://www.wilkins-avenue.com/shu-uemura-sticker\" target=\"_blank\" rel=\"noopener\">Shu Uemura</a>&nbsp;:</strong> j'ai construit le système de reconnaissance du sticker qui déclenche l'expérience AR de la marque sur Snapchat &mdash; présentée comme la première expérience AR déclenchée par un produit physique, lancée à VivaTech 2023.",
+    "proj1-p4": "Au-delà du code, je faisais régulièrement des démos de prototypes devant plus de 150 professionnels du secteur &mdash; dont L'Oréal et Cartier &mdash; et j'ai représenté le studio à VivaTech devant plus de 180 000 visiteurs.",
+
+    "proj2-role": "Programmeur Gameplay (Systèmes)",
+    "proj2-dates": "Sep 2025 &ndash; Fév 2026",
+    "proj2-badge": "Production confidentielle &middot; étude de cas volontairement abstraite, aucun asset interne montré",
+    "proj2-h3": "Systèmes d'exploration &amp; outils de debug sur Anvil",
+    "proj2-p1": "Membre d'une équipe Gameplay World Systems transverse à plusieurs productions, travaillant en C++ sur Anvil, le moteur propriétaire d'Ubisoft &mdash; une base de code partagée et massive couvrant cinq productions AAA.",
+    "proj2-p2": "J'ai développé et maintenu des systèmes de gameplay liés à l'exploration, et construit un panneau de debug/visualisation ImGui superposé à une carte 2D existante pour que les équipes puissent inspecter, filtrer et déboguer les points d'intérêt et marqueurs du monde directement &mdash; réduisant le temps d'investigation pendant l'itération. J'ai aussi refactorisé un module de filtrage partagé en composant réutilisable avec une classe dédiée et une API plus propre, éliminant la duplication entre outils.",
+    "proj2-p3": "Le quotidien, c'était de la revue de code via Swarm, une coordination avec la QA sur la reproduction des bugs et les cas limites, et le maintien des guidelines de code et de la dette technique dans une base dont dépendent d'autres équipes.",
+
+    "proj3-role": "Programmeur Gameplay &amp; Multijoueur",
+    "proj3-subtitle": "Projet personnel",
+    "proj3-dates": "Jan 2022 &ndash; Jan 2023",
+    "proj3-p1": "Un FPS construit en solo, centré sur le feeling des déplacements&nbsp;: traversée et tir en premier, puis wall-running et jump pads ajoutés par-dessus. J'ai construit le flux de lobby et la synchronisation multijoueur avec Mirror, hébergé sur AWS, et je m'en suis servi pour organiser des sessions communautaires avec plus de 100 joueurs et un tournoi de plus de 40 joueurs.",
+    "proj3-link": "Jouer sur itch.io &rarr;",
+
+    "proj4-role": "Programmeur Gameplay",
+    "proj4-subtitle": "Projet étudiant IIM (couch co-op)",
+    "proj4-dates": "Sep &ndash; Déc 2023",
+    "proj4-p1": "Un beat'em up d'arène en couch co-op où des pingouins s'affrontent pour le plus grand tournoi de la galaxie. J'ai implémenté les mécaniques de déplacement et d'attaque, construit un système de « Point Area » pour piloter la dynamique et la compétitivité des matchs, et intégré VFX et animations pour renforcer l'impact. Présenté aux parties prenantes à cinq reprises au cours du projet.",
+    "proj4-link": "Jouer sur itch.io &rarr;",
+
+    "jams-h2": "Prototypes &amp; game jams",
+    "jams-intro": "Plus de 10 jams et prototypes rapides sur Unity et Unreal, livrés seul ou en équipe &mdash; généralement contre un chrono de 48 à 72 heures.",
+
+    "jam1-h4": "Jeu mobile <span style=\"color:var(--text-faint); font-weight:400;\">&mdash; « Beat Polarity »</span>",
+    "jam1-p": "Un endless runner construit et livré en 48 à 72 heures en équipe&nbsp;: swiper pour esquiver des obstacles colorés arrivant en face. Plus de 500 téléchargements et un prix « Coup de cœur » du jury lors d'un festival français du jeu vidéo, au sein d'une jam de plus de 35 000 participants dans 97 pays.",
+    "jam1-link": "Jouer sur Google Play &rarr;",
+
+    "jam2-h4": "Entrée de jam",
+    "jam2-p": "Un prototype jouable conçu et construit en solo en 48 à 72 heures, avec une boucle de mini-jeu autonome. Classé 485e sur 2 939 entrées.",
+
+    "jam3-p": "Prototype de puzzle, auto-publié.",
+    "jam3-link": "Voir sur itch.io &rarr;",
+
+    "skills-h2": "Boîte à outils",
+    "skills-g1": "Langages",
+    "skills-g2": "Moteurs",
+    "skills-g3": "Systèmes de gameplay",
+    "skills-g4": "Outils de développement",
+    "skills-g5": "Connexe",
+    "skills-g6": "Langues parlées",
+
+    "chip-anvil": "Anvil (propriétaire)",
+    "chip-statemachines": "Machines à états",
+    "chip-exploration": "Systèmes d'exploration",
+    "chip-profiling": "Profilage &amp; débogage",
+    "chip-qa": "Collaboration QA",
+    "chip-fr-lang": "Français &mdash; langue maternelle",
+    "chip-en-lang": "Anglais &mdash; professionnel",
+
+    "path-h2": "À propos &amp; parcours",
+    "about-text": "Je suis programmeur gameplay basé à Québec, originaire de France, avec un faible pour les systèmes que personne ne voit &mdash; les machines à états, les outils et les panneaux de debug qui rendent possibles les mécaniques que les joueurs, eux, <em>voient</em>. Plus récemment, j'ai travaillé en C++ sur la base de code Anvil partagée d'Ubisoft Québec ; avant ça, j'ai passé près de deux ans à livrer des expériences AR/VR en Unity pour des clients comme L'Oréal et Cartier. <strong>Français natif, anglais professionnel</strong>, ouvert aux opportunités au Canada comme en Europe.",
+
+    "tl1-date": "Sep 2025 &ndash; Fév 2026",
+    "tl1-h4": "Programmeur Gameplay (Systèmes)",
+    "tl2-date": "Mar 2023 &ndash; Aoû 2024",
+    "tl2-h4": "Développeur AR/VR",
+    "tl3-date": "Avr 2021 &ndash; Mai 2024",
+    "tl3-h4": "Président, LéoIndieGames",
+    "tl3-org": "Association étudiante IIM &middot; organisation de 2 tournois (60+ participants), 10+ partenariats",
+    "tl4-h4": "M.Sc. Informatique &mdash; Développement de jeux",
+    "tl5-h4": "Bachelor &amp; Mastère, Programmation de jeux",
+
+    "contact-h2": "Me contacter",
+    "contact-status": "statut : disponible_maintenant &middot; ouvert au canada + europe",
+    "resume-note": "CV aussi disponibles &mdash; Programmeur Gameplay : <a href=\"CV_AntoineDIRION_GameplayProg_2026_EN.pdf\" target=\"_blank\" rel=\"noopener\">EN</a> / <a href=\"CV_DIRIONAntoine_GameplayProg_2026_FR.pdf\" target=\"_blank\" rel=\"noopener\">FR</a>. Ingénieur Logiciel : <a href=\"CV_AntoineDIRION_SoftwareEngineer_2026_EN.pdf\" target=\"_blank\" rel=\"noopener\">EN</a> / <a href=\"CV_DIRIONAntoine_SoftwareEngineer_2026_FR.pdf\" target=\"_blank\" rel=\"noopener\">FR</a>."
+  };
+
+  var EN = {};
+  var nodes = document.querySelectorAll('[data-i18n]');
+  nodes.forEach(function(el){ EN[el.getAttribute('data-i18n')] = el.innerHTML; });
+
+  function applyLang(lang){
+    nodes.forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var val = (lang === 'fr' ? FR[key] : EN[key]);
+      if (val !== undefined) el.innerHTML = val;
+    });
+    var cvBtn = document.getElementById('cvBtn');
+    if (cvBtn) cvBtn.setAttribute('href', CV[lang]);
+    var meta = document.getElementById('metaDesc');
+    if (meta) meta.setAttribute('content', META[lang]);
+    document.documentElement.setAttribute('lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+  });
+
+  var initial = 'en';
+  try {
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'en' || saved === 'fr') {
+      initial = saved;
+    } else if (navigator.language && navigator.language.toLowerCase().indexOf('fr') === 0) {
+      initial = 'fr';
+    }
+  } catch(e) {}
+  applyLang(initial);
+})();
+</script>
 </body>
 </html>

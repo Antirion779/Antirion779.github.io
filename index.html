@@ -300,6 +300,67 @@
   .video-embed iframe{
     position:absolute; inset:0; width:100%; height:100%; border:0;
   }
+
+  /* ---------- project teaser (click-to-expand) + modal ---------- */
+  .teaser-media{
+    position:relative; margin-top:16px; max-width:480px;
+    border-radius:var(--radius); overflow:hidden; border:1px solid var(--border);
+    cursor:pointer;
+  }
+  .teaser-media img{display:block; width:100%; height:auto;}
+  .teaser-media::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(rgba(10,14,12,0.05), rgba(10,14,12,0.35));
+  }
+  .teaser-play{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;}
+  .teaser-play span{
+    width:50px; height:50px; border-radius:50%;
+    background:rgba(255,255,255,0.94);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.3);
+    transition:transform .15s ease;
+  }
+  .teaser-media:hover .teaser-play span{transform:scale(1.08);}
+  .teaser-play span::before{
+    content:""; margin-left:4px;
+    border-style:solid; border-width:9px 0 9px 15px;
+    border-color:transparent transparent transparent var(--accent-ink);
+  }
+  .detail-btn{cursor:pointer;}
+  .modal-backdrop{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(8,12,10,0.6);
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:40px 16px; overflow-y:auto;
+  }
+  .modal-backdrop[hidden]{display:none;}
+  .modal-panel{
+    position:relative; width:100%; max-width:720px;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:0 12px 40px rgba(0,0,0,0.35);
+    padding:28px 24px 24px;
+  }
+  .modal-panel h3{font-size:1.15rem; font-weight:700; margin:4px 0 12px;}
+  .modal-panel p{color:var(--text-muted); max-width:66ch; margin-bottom:10px;}
+  .modal-close{
+    position:absolute; top:14px; right:14px;
+    width:32px; height:32px; border-radius:50%;
+    border:1px solid var(--border-strong); background:var(--surface-2); color:var(--text);
+    font-size:18px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .modal-close:hover{border-color:var(--accent); color:var(--accent-ink);}
+  .modal-clips{display:flex; flex-direction:column; gap:18px; margin-top:18px;}
+  .modal-clips figure{margin:0;}
+  .modal-clips video{
+    width:100%; display:block; border-radius:var(--radius); border:1px solid var(--border);
+    background:#000;
+  }
+  .modal-clips figcaption{font-size:12.5px; color:var(--text-faint); margin-top:6px; line-height:1.5;}
+  .modal-note{
+    font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--text-faint);
+    margin-top:16px; padding-top:14px; border-top:1px solid var(--border);
+  }
   .jam-media{
     width:100%;
     border-radius:var(--radius);
@@ -414,6 +475,8 @@
     .project-body{padding:18px 16px 16px;}
     .project-head{padding:12px 16px;}
     .contact-box{padding:24px 18px;}
+    .modal-backdrop{padding:20px 10px;}
+    .modal-panel{padding:22px 16px 18px;}
   }
 </style>
 
@@ -524,6 +587,28 @@
       </div>
     </article>
 
+    <article class="project project-teaser" data-modal-target="modal-netcode">
+      <div class="project-head">
+        <span><strong data-i18n="proj5-role">Gameplay &amp; Network Programmer</strong> &middot; <span data-i18n="proj5-subtitle">Personal project</span></span>
+        <span data-i18n="proj5-dates">Feb &ndash; Apr 2025</span>
+      </div>
+      <div class="project-body">
+        <h3 data-i18n="proj5-h3">Custom multiplayer netcode in Unreal, built from raw C++</h3>
+        <p data-i18n="proj5-p1">A from-scratch multiplayer prototype in Unreal Engine C++: Steam-based session hosting, replicated character movement, and a lag-compensation debug tool to test hit registration under network latency.</p>
+        <div class="teaser-media" aria-haspopup="dialog" aria-controls="modal-netcode">
+          <img src="media/mp-thumb.jpg" alt="Outil de debug de compensation de latence — trajectoire enregistrée et latence en ms" loading="lazy">
+          <div class="teaser-play" aria-hidden="true"><span></span></div>
+        </div>
+        <div class="tags">
+          <span class="tag">Unreal Engine</span><span class="tag">C++</span><span class="tag">Multiplayer / Netcode</span>
+          <span class="tag">Steam Online Subsystem</span><span class="tag">Lag compensation</span><span class="tag">Replication</span>
+        </div>
+        <div class="links-row">
+          <button type="button" class="btn detail-btn" data-modal-open aria-haspopup="dialog" aria-controls="modal-netcode" data-i18n="proj5-cta">See details &amp; video clips &rarr;</button>
+        </div>
+      </div>
+    </article>
+
     <article class="project">
       <div class="project-head">
         <span><strong data-i18n="proj4-role">Gameplay Programmer</strong> &middot; <span data-i18n="proj4-subtitle">IIM student project (couch co-op)</span></span>
@@ -545,6 +630,30 @@
     </article>
   </div>
 </section>
+
+<div class="modal-backdrop" id="modal-netcode" hidden>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-netcode-title">
+    <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    <h3 id="modal-netcode-title" data-i18n="proj5-h3">Custom multiplayer netcode in Unreal, built from raw C++</h3>
+    <p data-i18n="modal5-p1">Built outside of any multiplayer plugin or middleware, directly on Unreal's native C++ networking: session hosting and joining through the Steam Online Subsystem (with live connection logging and a Steam achievement hook), and character movement replicated across multiple game clients.</p>
+    <p data-i18n="modal5-p2">The centerpiece is a lag-compensation debug tool: a RewindTime slider and ShowPosition toggle replay each client's recorded past positions as a wireframe trail, next to a live round-trip latency readout in milliseconds &mdash; built to visualize and tune hit registration while simulating network lag between clients.</p>
+    <div class="modal-clips">
+      <figure>
+        <video src="media/mp-session.mp4" controls preload="metadata" playsinline></video>
+        <figcaption data-i18n="modal5-clip1">Host / Join flow via the Steam Online Subsystem &mdash; session search and connection logged live.</figcaption>
+      </figure>
+      <figure>
+        <video src="media/mp-sync.mp4" controls preload="metadata" playsinline></video>
+        <figcaption data-i18n="modal5-clip2">Character movement replicated in real time across three game clients.</figcaption>
+      </figure>
+      <figure>
+        <video src="media/mp-rewind.mp4" controls preload="metadata" playsinline></video>
+        <figcaption data-i18n="modal5-clip3">Lag-compensation tool: recorded position trail + live round-trip latency (ms), used to test hit registration under lag.</figcaption>
+      </figure>
+    </div>
+    <p class="modal-note" data-i18n="modal5-note">Unedited Unreal Editor screen captures from testing &mdash; not a polished build.</p>
+  </div>
+</div>
 
 <section id="jams">
   <div class="wrap">
@@ -787,7 +896,20 @@
 
     "contact-h2": "Me contacter",
     "contact-status": "statut : disponible_maintenant &middot; ouvert au canada + europe",
-    "resume-note": "CV aussi disponibles &mdash; Programmeur Gameplay : <a href=\"CV_AntoineDIRION_GameplayProg_2026_EN.pdf\" target=\"_blank\" rel=\"noopener\">EN</a> / <a href=\"CV_DIRIONAntoine_GameplayProg_2026_FR.pdf\" target=\"_blank\" rel=\"noopener\">FR</a>. Ingénieur Logiciel : <a href=\"CV_AntoineDIRION_SoftwareEngineer_2026_EN.pdf\" target=\"_blank\" rel=\"noopener\">EN</a> / <a href=\"CV_DIRIONAntoine_SoftwareEngineer_2026_FR.pdf\" target=\"_blank\" rel=\"noopener\">FR</a>."
+    "resume-note": "CV aussi disponibles &mdash; Programmeur Gameplay : <a href=\"CV_AntoineDIRION_GameplayProg_2026_EN.pdf\" target=\"_blank\" rel=\"noopener\">EN</a> / <a href=\"CV_DIRIONAntoine_GameplayProg_2026_FR.pdf\" target=\"_blank\" rel=\"noopener\">FR</a>. Ingénieur Logiciel : <a href=\"CV_AntoineDIRION_SoftwareEngineer_2026_EN.pdf\" target=\"_blank\" rel=\"noopener\">EN</a> / <a href=\"CV_DIRIONAntoine_SoftwareEngineer_2026_FR.pdf\" target=\"_blank\" rel=\"noopener\">FR</a>.",
+
+    "proj5-role": "Programmeur Gameplay &amp; Réseau",
+    "proj5-subtitle": "Projet personnel",
+    "proj5-dates": "Fév &ndash; avr. 2025",
+    "proj5-h3": "Netcode multijoueur fait maison sous Unreal, en C++ pur",
+    "proj5-p1": "Un prototype multijoueur construit de zéro en C++ sous Unreal Engine&nbsp;: hébergement de sessions via Steam, réplication du mouvement des personnages, et un outil de debug de compensation de latence pour tester la détection des tirs sous latence réseau.",
+    "proj5-cta": "Voir les détails &amp; les vidéos &rarr;",
+    "modal5-p1": "Construit sans plugin ni middleware de networking, directement sur le système réseau natif C++ d'Unreal&nbsp;: hébergement et connexion à des sessions via le Steam Online Subsystem (avec logs de connexion en direct et un accroche-succès Steam), et mouvement des personnages répliqué entre plusieurs clients du jeu.",
+    "modal5-p2": "La pièce maîtresse est un outil de debug de compensation de latence&nbsp;: un slider RewindTime et une case ShowPosition qui rejouent les positions passées enregistrées de chaque client sous forme de trajectoire filaire, à côté d'un indicateur de latence aller-retour en direct (ms) &mdash; conçu pour visualiser et ajuster la détection des tirs en simulant du lag entre les clients.",
+    "modal5-clip1": "Host / Join via le Steam Online Subsystem &mdash; recherche et connexion à la session loguées en direct.",
+    "modal5-clip2": "Mouvement des personnages répliqué en temps réel entre trois clients du jeu.",
+    "modal5-clip3": "Outil de compensation de latence&nbsp;: trajectoire des positions enregistrées + latence aller-retour en direct (ms), utilisé pour tester la détection des tirs sous lag.",
+    "modal5-note": "Captures d'écran brutes de l'éditeur Unreal, prises pendant les tests &mdash; pas un build finalisé."
   };
 
   var EN = {};
@@ -813,6 +935,45 @@
 
   document.querySelectorAll('.lang-btn').forEach(function(b){
     b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+  });
+
+  // Project detail modals (click-to-expand teaser cards)
+  function openModal(id){
+    var modal = document.getElementById(id);
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    var closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
+  }
+  function closeModal(modal){
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    modal.querySelectorAll('video').forEach(function(v){ v.pause(); });
+  }
+  document.querySelectorAll('.project-teaser').forEach(function(card){
+    var targetId = card.getAttribute('data-modal-target');
+    card.querySelectorAll('.teaser-media, [data-modal-open]').forEach(function(el){
+      el.addEventListener('click', function(){ openModal(targetId); });
+      if (el.classList.contains('teaser-media')) {
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+        el.addEventListener('keydown', function(e){
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(targetId); }
+        });
+      }
+    });
+  });
+  document.querySelectorAll('.modal-backdrop').forEach(function(modal){
+    modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(modal); });
+  var closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) closeBtn.addEventListener('click', function(){ closeModal(modal); });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-backdrop:not([hidden])').forEach(function(modal){ closeModal(modal); });
+    }
   });
 
   var initial = 'en';
